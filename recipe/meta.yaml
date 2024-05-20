@@ -11,7 +11,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 5
+  number: 6
   skip: true  # [py2k or win]
   script: {{ PYTHON }} -m pip install . --ignore-installed --no-deps -vv
 
@@ -19,6 +19,7 @@ build:
 requirements:
   build:
     - {{ compiler('cxx') }}
+    - {{ stdlib("c") }}
   host:
     - cython
     - libcblas
@@ -29,7 +30,6 @@ requirements:
     - wheel
   run:
     - python
-    - {{ pin_compatible('numpy') }}
     - scipy
 
 test:
